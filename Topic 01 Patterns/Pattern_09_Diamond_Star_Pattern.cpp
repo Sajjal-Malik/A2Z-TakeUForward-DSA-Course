@@ -1,6 +1,16 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+//     *
+//    ***
+//   *****
+//  *******
+// *********
+// *********
+//  *******
+//   *****
+//    ***
+//     *
 
 void starPyramidPattern(int n)
 {
@@ -42,14 +52,19 @@ void invertedStarPyramidPattern(int n)
     }
 }
 
+void diamondStarPyramidPattern(int n){
+
+    starPyramidPattern(n);
+    invertedStarPyramidPattern(n);
+}
+
 int main(){
 
     int n;
     cout << "Enter the number of rows for the Diamond star pyramid pattern: ";
     cin >> n;
 
-    starPyramidPattern(n);
-    invertedStarPyramidPattern(n);
+    diamondStarPyramidPattern(n);
     
     return 0;
 }
