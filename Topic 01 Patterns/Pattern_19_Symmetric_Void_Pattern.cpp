@@ -6,8 +6,13 @@ using namespace std;
 // ***    ***
 // **      **
 // *        *
+// *        *
+// **      **
+// ***    ***
+// ****  ****
+// **********
 
-void symmetryVoidPattern(int n)
+void symmetricalVoidPattern(int n)
 {
     int spaces = 0;
 
@@ -60,7 +65,7 @@ int main(){
     cout << "Enter the number of rows for the Symmetrical Void Pattern: ";
     cin >> n;
 
-    symmetryVoidPattern(n);
+    symmetricalVoidPattern(n);
     
     return 0;
 }
