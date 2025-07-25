@@ -1,6 +1,11 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+// B C D E 
+// A B C D
+// A B C
+// A B
+// A
 
 void reverseLetterTrianglePattern(int n)
 {
