@@ -5,6 +5,7 @@
         "*.html": "html",
         "*.txt": "plaintext",
         "pattern_08_inverted_star_pyramid": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "ostream": "cpp"
     }
 }
