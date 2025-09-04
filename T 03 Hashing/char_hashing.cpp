@@ -12,8 +12,8 @@ int main(){
         hash[s[i] - 'a']++;
     }
 
-    int q;
-    cin >> q;
+    int query;
+    cin >> query;
     while(q--) {
         char c;
         cin >> c;
