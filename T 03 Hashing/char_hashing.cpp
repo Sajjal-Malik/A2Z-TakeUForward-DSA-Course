@@ -5,7 +5,7 @@ int main(){
 
     string s;
     cin >> s;
-
+    
     // Pre-computation here for storing the values according to hashed (mapped) values
     int hash[26] = {0};
     for(int i = 0; i < s.size(); i++) {
@@ -14,7 +14,7 @@ int main(){
 
     int query;
     cin >> query;
-    while(q--) {
+    while(query--) {
         char c;
         cin >> c;
         cout << hash[c - 'a'] << endl;

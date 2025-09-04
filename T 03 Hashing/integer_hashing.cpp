@@ -5,7 +5,7 @@ int main(){
 
     int n;
     cin >> n;
-    int arr[n]; // declaration of size n array
+    int arr[n]; // declaration of n size array
     for(int i = 0; i < n; i++) {
         cin >> arr[i];  // input values in the array
     }
@@ -26,7 +26,7 @@ int main(){
         int number;
         // input the number you want to check for in the hash array (if it's there increase it's count)
         cin >> number;
-        
+
         cout << hash[number] << endl;
     }
 
