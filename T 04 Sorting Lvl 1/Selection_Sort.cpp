@@ -2,13 +2,22 @@
 using namespace std;
 
 void selectionSort(int arr[], int n) {
-    for(int i = 0; i < n - 2; i++) {
+    for(int i = 0; i < n - 1; i++) {
+
         int minimum = i;
+
         for(int j = i; j <= n - 1; j++) {
+
             if(arr[j] < arr[minimum])
                 minimum = j;
         }
-        swap(arr[minimum], arr[i]);
+
+        // swap(arr[minimum], arr[i]);
+
+        int temp = arr[minimum];
+        arr[minimum] = arr[i];
+        arr[i] = temp;
+        
     }
 }
 
