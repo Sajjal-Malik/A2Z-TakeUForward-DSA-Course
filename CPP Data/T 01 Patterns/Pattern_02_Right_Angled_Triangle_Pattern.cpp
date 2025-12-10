@@ -1,4 +1,4 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
 // *
@@ -9,17 +9,21 @@ using namespace std;
 
 void printRightAngledTrianglePattern(int n)
 {
-    for(int i = 1; i <= n; i++) {
-
-        for(int j = 1; j <= i; j++) {
-            
+    // Outer loop controls the rows. It runs 'n' times (once for each row)
+    for (int i = 1; i <= n; i++)
+    {
+        // Inner loop for columns, iterating up to the current row number 'i'
+        for (int j = 1; j <= i; j++)
+        {
             cout << "* ";
         }
+        // Move to the next line after each row is complete
         cout << endl;
     }
 }
 
-int main(){
+int main()
+{
 
     int n;
     cout << "Enter the number of rows for the right-angled triangle pattern: ";

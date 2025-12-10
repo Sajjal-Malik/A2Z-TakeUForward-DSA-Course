@@ -17,20 +17,24 @@ void symmetricalButterflyPattern(int n)
 {
     int spaces = 2 * n - 2;
 
-    // Upper half
-    for (int i = 1; i <= n; i++) {
+    // Upper half (including the widest middle line)
+    for (int i = 1; i <= n; i++)
+    {
         // Left stars
-        for (int j = 1; j <= i; j++) {
+        for (int j = 1; j <= i; j++)
+        {
             cout << "*";
         }
 
         // Middle spaces
-        for (int j = 1; j <= spaces; j++) {
+        for (int j = 1; j <= spaces; j++)
+        {
             cout << " ";
         }
 
         // Right stars
-        for (int j = 1; j <= i; j++) {
+        for (int j = 1; j <= i; j++)
+        {
             cout << "*";
         }
 
@@ -39,21 +43,25 @@ void symmetricalButterflyPattern(int n)
     }
 
     // Lower half
-    spaces = 2; // Reset spaces to start from bottom
+    spaces = 2; // Reset spaces to start from bottom's top line
 
-    for (int i = n - 1; i >= 1; i--) {
+    for (int i = n - 1; i >= 1; i--)
+    {
         // Left stars
-        for (int j = 1; j <= i; j++) {
+        for (int j = 1; j <= i; j++)
+        {
             cout << "*";
         }
 
         // Middle spaces
-        for (int j = 1; j <= spaces; j++) {
+        for (int j = 1; j <= spaces; j++)
+        {
             cout << " ";
         }
 
         // Right stars
-        for (int j = 1; j <= i; j++) {
+        for (int j = 1; j <= i; j++)
+        {
             cout << "*";
         }
 
@@ -62,7 +70,8 @@ void symmetricalButterflyPattern(int n)
     }
 }
 
-int main() {
+int main()
+{
     int n;
     cout << "Enter the number of rows for the Symmetrical Butterfly Void Pattern: ";
     cin >> n;

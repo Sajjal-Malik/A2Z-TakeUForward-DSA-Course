@@ -16,20 +16,25 @@ void symmetricalVoidPattern(int n)
 {
     int spaces = 0;
 
-    for(int i = 1; i <= n; i++) {
+    // Top half of the pattern
+    for (int i = 1; i <= n; i++)
+    {
 
         // Left stars
-        for(int j = 1; j <= n - i + 1; j++){
+        for (int j = 1; j <= n - i + 1; j++)
+        {
             cout << "*";
         }
 
         // Middle spaces
-        for(int j = 0; j < spaces; j++){
+        for (int j = 0; j < spaces; j++)
+        {
             cout << " ";
         }
 
         // Right stars
-        for(int j = 1; j <= n - i + 1; j++){
+        for (int j = 1; j <= n - i + 1; j++)
+        {
             cout << "*";
         }
 
@@ -39,20 +44,25 @@ void symmetricalVoidPattern(int n)
 
     spaces = 2 * n - 2;
 
-    for(int i = 1; i <= n; i++) {
+    // Bottom half of the pattern
+    for (int i = 1; i <= n; i++)
+    {
 
         // Left stars
-        for(int j = 1; j <= i; j++){
+        for (int j = 1; j <= i; j++)
+        {
             cout << "*";
         }
 
         // Middle spaces
-        for(int j = 0; j < spaces; j++){
+        for (int j = 0; j < spaces; j++)
+        {
             cout << " ";
         }
 
         // Right stars
-        for(int j = 1; j <= i; j++){
+        for (int j = 1; j <= i; j++)
+        {
             cout << "*";
         }
 
@@ -60,12 +70,13 @@ void symmetricalVoidPattern(int n)
         spaces -= 2;
     }
 }
-int main(){
+int main()
+{
     int n;
-    cout << "Enter the number of rows for the Symmetrical Void Pattern: ";
+    cout << "Enter the number of rows for the Symmetrical Void Pattern (per half): ";
     cin >> n;
 
     symmetricalVoidPattern(n);
-    
+
     return 0;
 }
