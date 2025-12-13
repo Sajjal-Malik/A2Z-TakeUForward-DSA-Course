@@ -1,14 +1,14 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-void selectionSort(int arr[], int n) {
-    for(int i = 0; i < n - 1; i++) {
-
+void selectionSort(int arr[], int n)
+{
+    for (int i = 0; i < n - 1; i++)
+    {
         int minimum = i;
-
-        for(int j = i; j <= n - 1; j++) {
-
-            if(arr[j] < arr[minimum])
+        for (int j = i; j < n; j++)
+        {
+            if (arr[j] < arr[minimum])
                 minimum = j;
         }
 
@@ -17,17 +17,18 @@ void selectionSort(int arr[], int n) {
         int temp = arr[minimum];
         arr[minimum] = arr[i];
         arr[i] = temp;
-        
     }
 }
 
-int main(){
+int main()
+{
 
     int arr[] = {13, 46, 24, 52, 20, 9};
-    int size = sizeof(arr)/sizeof(arr[0]);
+    int size = sizeof(arr) / sizeof(arr[0]);
 
     cout << "Before Sorting: ";
-    for(int i = 0; i < size; i++) {
+    for (int i = 0; i < size; i++)
+    {
         cout << arr[i] << " ";
     }
 
@@ -35,7 +36,8 @@ int main(){
     cout << endl;
 
     cout << "After Sorting: ";
-    for(int i = 0; i < size; i++) {
+    for (int i = 0; i < size; i++)
+    {
         cout << arr[i] << " ";
     }
 
