@@ -1,38 +1,63 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void Frequency(int arr[], int n)
+void analyzeFrequency(int input_array[], int array_size)
 {
-    unordered_map<int, int> map;
+    // Use an unordered_map to store the count (frequency) of each unique integer in the array.
+    // Unordered maps provide average O(1) time complexity for insertion and lookups.
+    unordered_map<int, int> frequency_map;
 
-    for (int i = 0; i < n; i++)
-        map[arr[i]]++;
+    // --- Pre-computation Phase ---
+    // Iterate through the input array and populate the frequency map.
+    for (int i = 0; i < array_size; i++)
+        frequency_map[input_array[i]]++;
 
-    int maxFreq = 0, minFreq = n;
-    int maxEle = 0, minEle = 0;
-    // Traverse through map to find the elements.
-    for (auto it : map) {
-        int count = it.second;
-        int element = it.first;
+    // Initialize variables to track the maximum and minimum frequencies found so far.
+    // 'max_frequency' starts at 0, 'min_frequency' starts at the maximum possible (array size).
+    int max_frequency = 0;
+    int min_frequency = array_size;
 
-        if (count > maxFreq) {
-            maxEle = element;
-            maxFreq = count;
+    // Initialize variables to store the elements corresponding to the max/min frequencies.
+    int max_element = 0;
+    int min_element = 0;
+
+    // --- Analysis Phase ---
+    // Traverse through the frequency map to find the elements with the highest and lowest counts.
+    for (auto const &pair : frequency_map)
+    {
+        int current_count = pair.second;
+        int current_element = pair.first;
+
+        // Check if the current element's count is higher than the current maximum frequency.
+        if (current_count > max_frequency)
+        {
+            max_element = current_element;
+            max_frequency = current_count;
         }
-        if (count < minFreq) {
-            minEle = element;
-            minFreq = count;
+
+        // Check if the current element's count is lower than the current minimum frequency.
+        if (current_count < min_frequency)
+        {
+            min_element = current_element;
+            min_frequency = current_count;
         }
     }
 
-    cout << "The highest frequency element is: " << maxEle << "\n";
-    cout << "The lowest frequency element is: " << minEle << "\n";
+    // --- Output Phase ---
+    cout << "The highest frequency element is: " << max_element << " (Count: " << max_frequency << ")\n";
+    cout << "The lowest frequency element is: " << min_element << " (Count: " << min_frequency << ")\n";
 }
 
 int main()
 {
-    int arr[] = {10, 5, 10, 15, 10, 5, 10, 5};
-    int n = sizeof(arr) / sizeof(arr[0]);
-    Frequency(arr, n);
+    // Define the array of integers to analyze.
+    int data_array[] = {10, 5, 10, 15, 10, 5, 10, 5};
+
+    // Calculate the number of elements in the array dynamically.
+    int n = sizeof(data_array) / sizeof(data_array[0]);
+
+    // Call the function to analyze and print frequencies.
+    analyzeFrequency(data_array, n);
+
     return 0;
 }
