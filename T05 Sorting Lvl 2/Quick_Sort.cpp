@@ -6,65 +6,65 @@ using namespace std;
  * Rearranges elements so that items smaller than the pivot are on the left,
  * and items larger than the pivot are on the right.
  */
-int quickSort(int *arr, int low, int high)
+int partition(int *arr, int low, int high)
 {
     // Pick the first element as the pivot
     int pivot = arr[low];
-    int start = low;
-    int end = high;
+    int leftPointer = low;
+    int rightPointer = high;
 
-    while (start < end)
+    while (leftPointer < rightPointer)
     {
-        // Increment 'start' until an element greater than pivot is found
-        while (arr[start] <= pivot && start <= high - 1)
+        // Increment 'leftPointer' until an element greater than pivot is found
+        while (arr[leftPointer] <= pivot && leftPointer <= high - 1)
         {
-            start++;
+            leftPointer++;
         }
 
-        // Decrement 'end' until an element smaller than or equal to pivot is found
-        while (arr[end] > pivot && end >= low + 1)
+        // Decrement 'rightPointer' until an element smaller than or equal to pivot is found
+        while (arr[rightPointer] > pivot && rightPointer >= low + 1)
         {
-            end--;
+            rightPointer--;
         }
 
         // If pointers haven't crossed, swap the out-of-place elements
-        if (start < end)
+        if (leftPointer < rightPointer)
         {
-            int temp = arr[start];
-            arr[start] = arr[end];
-            arr[end] = temp;
+            int temp = arr[leftPointer];
+            arr[leftPointer] = arr[rightPointer];
+            arr[rightPointer] = temp;
 
             // Alternatively we can also use
-            // swap(arr[start], arr[end]);
+            // swap(arr[leftPointer], arr[rightPointer]);
         }
     }
 
-    // Final Step: Place the pivot in its correct sorted position by swapping with 'end'
+    // Final Step: Place the pivot in its correct sorted position by swapping with 'rightPointer'
     int temp = arr[low];
-    arr[low] = arr[end];
-    arr[end] = temp;
+    arr[low] = arr[rightPointer];
+    arr[rightPointer] = temp;
 
     // Alternatively we can also use
-    // swap(arr[low], arr[end]);
+    // swap(arr[low], arr[rightPointer]);
 
     // Return the index where the pivot is now located
-    return end;
+    return rightPointer;
 }
 
 /**
  * Recursive function to divide and conquer the array
  */
-void quickSortRecursive(int *arr, int low, int high)
+void quickSort(int *arr, int low, int high)
 {
     // Base case: if the sub-array has more than one element
     if (low < high)
     {
         // Find the index where the pivot is correctly placed
-        int partition_index = quickSort(arr, low, high);
+        int pivotIndex = partition(arr, low, high);
 
         // Recursively sort elements before and after the partition index
-        quickSortRecursive(arr, low, partition_index - 1);
-        quickSortRecursive(arr, partition_index + 1, high);
+        quickSort(arr, low, pivotIndex - 1);
+        quickSort(arr, pivotIndex + 1, high);
     }
 }
 
@@ -72,23 +72,23 @@ int main()
 {
     // Initialize sample array
     int arr[] = {4, 2, 6, 5, 7, 9, 1, 3};
-    int size = sizeof(arr) / sizeof(arr[0]);
+    int n = sizeof(arr) / sizeof(arr[0]); // n for number of element (standard shorthand)
 
     // Print array before sorting
     cout << "Before sorting: ";
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < n; i++)
     {
         cout << arr[i] << " ";
     }
 
     // Begin the recursive QuickSort process
-    quickSortRecursive(arr, 0, size - 1);
+    quickSort(arr, 0, n - 1);
 
     cout << endl;
 
     // Print the final sorted array
     cout << "After sorting: ";
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < n; i++)
     {
         cout << arr[i] << " ";
     }
