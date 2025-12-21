@@ -5,10 +5,10 @@ using namespace std;
     mergeSortedRanges():
     Merges two sorted ranges inside a vector.
 
-    Left range  -> data[startIndex ... middleIndex]
-    Right range -> data[middleIndex + 1 ... endIndex]
+    Left range  -> array[startIndex ... middleIndex]
+    Right range -> array[middleIndex + 1 ... endIndex]
 */
-void mergeSortedRanges(vector<int> &data, int startIndex, int middleIndex, int endIndex)
+void mergeSortedRanges(vector<int> &array, int startIndex, int middleIndex, int endIndex)
 {
     // Temporary vector to store merged elements
     vector<int> mergedResult;
@@ -19,14 +19,14 @@ void mergeSortedRanges(vector<int> &data, int startIndex, int middleIndex, int e
     // Merge both halves while elements remain
     while (leftPointer <= middleIndex && rightPointer <= endIndex)
     {
-        if (data[leftPointer] <= data[rightPointer])
+        if (array[leftPointer] <= array[rightPointer])
         {
-            mergedResult.push_back(data[leftPointer]);
+            mergedResult.push_back(array[leftPointer]);
             leftPointer++;
         }
         else
         {
-            mergedResult.push_back(data[rightPointer]);
+            mergedResult.push_back(array[rightPointer]);
             rightPointer++;
         }
     }
@@ -34,21 +34,21 @@ void mergeSortedRanges(vector<int> &data, int startIndex, int middleIndex, int e
     // Copy remaining elements from left half
     while (leftPointer <= middleIndex)
     {
-        mergedResult.push_back(data[leftPointer]);
+        mergedResult.push_back(array[leftPointer]);
         leftPointer++;
     }
 
     // Copy remaining elements from right half
     while (rightPointer <= endIndex)
     {
-        mergedResult.push_back(data[rightPointer]);
+        mergedResult.push_back(array[rightPointer]);
         rightPointer++;
     }
 
     // Copy merged result back to original vector
     for (int i = startIndex; i <= endIndex; i++)
     {
-        data[i] = mergedResult[i - startIndex];
+        array[i] = mergedResult[i - startIndex];
     }
 }
 
@@ -56,7 +56,7 @@ void mergeSortedRanges(vector<int> &data, int startIndex, int middleIndex, int e
     mergeSortRecursive():
     Recursively sorts the vector using merge sort.
 */
-void mergeSortRecursive(vector<int> &data,
+void mergeSortRecursive(vector<int> &array,
                         int startIndex,
                         int endIndex)
 {
@@ -67,13 +67,13 @@ void mergeSortRecursive(vector<int> &data,
     int middleIndex = startIndex + (endIndex - startIndex) / 2;
 
     // Sort left half
-    mergeSortRecursive(data, startIndex, middleIndex);
+    mergeSortRecursive(array, startIndex, middleIndex);
 
     // Sort right half
-    mergeSortRecursive(data, middleIndex + 1, endIndex);
+    mergeSortRecursive(array, middleIndex + 1, endIndex);
 
     // Merge sorted halves
-    mergeSortedRanges(data, startIndex, middleIndex, endIndex);
+    mergeSortedRanges(array, startIndex, middleIndex, endIndex);
 }
 
 int main()
