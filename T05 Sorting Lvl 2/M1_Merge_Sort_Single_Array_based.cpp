@@ -80,6 +80,10 @@ int main()
 {
     vector<int> numbers = {4, 3, 8, 5, 6, 7, 6, 2, 1, 5};
 
+    cout << "Before sorting:\n";
+    for (int value : numbers)
+        cout << value << " ";
+
     mergeSortRecursive(numbers, 0, numbers.size() - 1);
 
     cout << "Sorted array:\n";
