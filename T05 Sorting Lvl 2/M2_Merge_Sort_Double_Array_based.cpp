@@ -10,11 +10,8 @@ using namespace std;
 */
 void mergeSubarrays(int array[], int startIndex, int middleIndex, int endIndex)
 {
-    // Size of left subarray
-    int leftSize = middleIndex - startIndex + 1;
-
-    // Size of right subarray
-    int rightSize = endIndex - middleIndex;
+    int leftSize = middleIndex - startIndex + 1; // Size of left subarray
+    int rightSize = endIndex - middleIndex;      // Size of right subarray
 
     // Temporary arrays for merging
     vector<int> leftArray(leftSize);
@@ -28,10 +25,9 @@ void mergeSubarrays(int array[], int startIndex, int middleIndex, int endIndex)
     for (int j = 0; j < rightSize; j++)
         rightArray[j] = array[middleIndex + 1 + j];
 
-    // Index variables
-    int leftIndex = 0;
-    int rightIndex = 0;
-    int mergedIndex = startIndex;
+    int leftIndex = 0;            // index for leftArray
+    int rightIndex = 0;           // index for rightArray
+    int mergedIndex = startIndex; // index for merged result in original array
 
     // Merge the temporary arrays back into original array
     while (leftIndex < leftSize && rightIndex < rightSize)
@@ -72,20 +68,13 @@ void mergeSubarrays(int array[], int startIndex, int middleIndex, int endIndex)
 */
 void mergeSortRecursive(int array[], int startIndex, int endIndex)
 {
-    // Base condition: at least two elements
-    if (startIndex < endIndex)
+    if (startIndex < endIndex) // base case handled implicitly
     {
-        // Calculate middle index
         int middleIndex = startIndex + (endIndex - startIndex) / 2;
 
-        // Sort left half
-        mergeSortRecursive(array, startIndex, middleIndex);
-
-        // Sort right half
-        mergeSortRecursive(array, middleIndex + 1, endIndex);
-
-        // Merge sorted halves
-        mergeSubarrays(array, startIndex, middleIndex, endIndex);
+        mergeSortRecursive(array, startIndex, middleIndex);       // sort left half
+        mergeSortRecursive(array, middleIndex + 1, endIndex);     // sort right half
+        mergeSubarrays(array, startIndex, middleIndex, endIndex); // merge sorted halves
     }
 }
 

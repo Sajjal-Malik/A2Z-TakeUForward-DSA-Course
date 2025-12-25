@@ -10,11 +10,10 @@ using namespace std;
 */
 void mergeSortedRanges(vector<int> &array, int startIndex, int middleIndex, int endIndex)
 {
-    // Temporary vector to store merged elements
-    vector<int> mergedResult;
+    vector<int> mergedResult; // Temporary vector to store merged elements
 
-    int leftPointer = startIndex;
-    int rightPointer = middleIndex + 1;
+    int leftPointer = startIndex;       // pointer for left half
+    int rightPointer = middleIndex + 1; // pointer for right half
 
     // Merge both halves while elements remain
     while (leftPointer <= middleIndex && rightPointer <= endIndex)
@@ -60,20 +59,14 @@ void mergeSortRecursive(vector<int> &array,
                         int startIndex,
                         int endIndex)
 {
-    // Base case: one or zero elements
     if (startIndex >= endIndex)
-        return;
+        return; // base case
 
     int middleIndex = startIndex + (endIndex - startIndex) / 2;
 
-    // Sort left half
-    mergeSortRecursive(array, startIndex, middleIndex);
-
-    // Sort right half
-    mergeSortRecursive(array, middleIndex + 1, endIndex);
-
-    // Merge sorted halves
-    mergeSortedRanges(array, startIndex, middleIndex, endIndex);
+    mergeSortRecursive(array, startIndex, middleIndex);          // sort left half
+    mergeSortRecursive(array, middleIndex + 1, endIndex);        // sort right half
+    mergeSortedRanges(array, startIndex, middleIndex, endIndex); // merge sorted halves
 }
 
 int main()
@@ -86,7 +79,7 @@ int main()
 
     mergeSortRecursive(numbers, 0, numbers.size() - 1);
 
-    cout << "Sorted array:\n";
+    cout << "\nSorted array:\n";
     for (int value : numbers)
         cout << value << " ";
 
