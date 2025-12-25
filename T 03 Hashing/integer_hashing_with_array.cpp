@@ -3,38 +3,37 @@ using namespace std;
 
 int main()
 {
+    // Number of elements
+    int totalElements;
+    cin >> totalElements;
 
-    // Declare a integer variable to store the input integer from the user.
-    int num;
-    cin >> num;
-    int arr[num]; // declaration of n size array
-    for (int i = 0; i < num; i++)
+    int numbers[totalElements];
+
+    // Input elements
+    for (int i = 0; i < totalElements; i++)
     {
-        cin >> arr[i]; // input values in the array
+        cin >> numbers[i];
     }
 
-    // Pre-computation here for storing the values according to hashed (mapped) values
-    int hash[13] = {0}; // {0,0,0,0,0,0,0,0,0,0,0,0,0}  // hash array with all zero values initialized
-                        //   | | | | | | | | | | | | |
-                        // 0 1 2 3 4 5 6 7 8 9 10 11 12  // indexes
-    for (int i = 0; i < num; i++)
+    // Fixed-size hash array (values assumed from 0 to 12)
+    int frequencyHash[13] = {0};
+
+    // Pre-computation
+    for (int i = 0; i < totalElements; i++)
     {
-        hash[arr[i]] += 1; // increasing the number of occurence of the value from the array
+        frequencyHash[numbers[i]]++;
     }
 
-    // --- Query Phase ---
-    // Declare an integer variable to store the number of queries the user wants to make.
-    int query;
-    // input the query (number of elements you want to look for)
-    cin >> query;
+    // Query phase
+    int queryCount;
+    cin >> queryCount;
 
-    while (query--)
+    while (queryCount--)
     {
-        int number;
-        // input the number you want to check for in the hash array (if it's there increase it's count)
-        cin >> number;
+        int queryValue;
+        cin >> queryValue;
 
-        cout << hash[number] << endl;
+        cout << frequencyHash[queryValue] << endl;
     }
 
     return 0;
