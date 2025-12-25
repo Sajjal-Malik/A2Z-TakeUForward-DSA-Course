@@ -13,12 +13,12 @@ void bubbleSort(int array[], int size)
     // Outer loop: Controls the number of passes needed. In each pass, the largest
     // unsorted element "bubbles up" to its correct position at the end of the array.
     // After 'i' passes, the last 'i' elements are sorted.
-    for (int passIndex = 0; passIndex < size - 1; passIndex++)
+    for (int passIndex = size - 1; passIndex > 0; passIndex--)
     {
         // Inner loop: Iterates through the unsorted portion of the array to compare adjacent elements.
         // The upper bound 'n - passIndex - 1' decreases in each pass, as the last elements
         // become sorted and don't need re-checking.
-        for (int compareIndex = 0; compareIndex < size - passIndex - 1; compareIndex++)
+        for (int compareIndex = 0; compareIndex <= passIndex - 1; compareIndex++)
         {
             // Compare the current element with the next element.
             if (array[compareIndex] > array[compareIndex + 1])

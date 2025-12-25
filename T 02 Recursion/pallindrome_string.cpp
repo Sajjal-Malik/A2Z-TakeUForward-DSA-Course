@@ -1,43 +1,42 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Function to recursively check for a palindrome.
-bool pallindromeCheck(int i, string &str, int size)
+/*
+    Function: isPalindrome
+    Purpose : Checks whether a string is a palindrome using recursion
+*/
+bool isPalindrome(int leftIndex, string &text, int length)
 {
-    // Base case: If the index 'i' has reached the middle of the string or passed it,
-    // all corresponding characters have successfully been compared.
-    if (i >= size / 2)
+    // Base case:
+    // When left index reaches or crosses the middle
+    if (leftIndex >= length / 2)
     {
         return true;
     }
-    // Check if the characters at the current start index (i) and corresponding end index (size - i - 1) do not match.
-    if (str[i] != str[size - i - 1])
+
+    // If characters at both ends do not match
+    if (text[leftIndex] != text[length - leftIndex - 1])
     {
-        return false; // If they don't match, it's not a palindrome.
+        return false;
     }
-    // !! LOGIC ERROR START:
-    // This swap operation is incorrect for simply *checking* a palindrome; it permanently changes the string characters.
-    swap(str[i], str[size - i - 1]);
-    // This recursive call calculates a value but does not return it to the caller function,
-    // leading to undefined behavior or an implicit 'void' return in some contexts.
-    pallindromeCheck(i + 1, str, size);
-    // !! LOGIC ERROR END
+
+    // Recursive call moving inward
+    return isPalindrome(leftIndex + 1, text, length);
 }
 
 int main()
 {
+    string word = "madam";
+    int length = word.size();
 
-    string str = "madam";
-    int size = str.size();
-    // Call the palindrome check function using the initial index (0), the string, and its size.
-    // Due to the function's internal errors, the result here might be unreliable.
-    if (pallindromeCheck(0, str, size))
+    if (isPalindrome(0, word, length))
     {
-        cout << "This is string is Pallindrome" << endl;
+        cout << "This string is a Palindrome" << endl;
     }
     else
     {
-        cout << "This string is not a Pallindrome" << endl;
+        cout << "This string is NOT a Palindrome" << endl;
     }
+
     return 0;
 }

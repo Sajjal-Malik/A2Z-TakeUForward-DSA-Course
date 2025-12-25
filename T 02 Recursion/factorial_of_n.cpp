@@ -1,28 +1,30 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Function to calculate the factorial of a non-negative integer 'n'
-// This function uses recursion to solve the problem.
-int factorial(int n)
+/*
+    Function: calculateFactorial
+    Purpose : Computes factorial of a non-negative integer using recursion.
+    Formula : n! = n * (n-1)! , with 0! = 1
+*/
+int calculateFactorial(int number)
 {
-    // Base case: the factorial of 0 is defined as 1.
-    // This condition is crucial for stopping the infinite chain of recursive calls.
-    if (n == 0)
+    // Base case:
+    // Factorial of 0 is 1, stops recursion
+    if (number == 0)
     {
         return 1;
     }
-    // Recursive step: the factorial of n (for n > 0) is n multiplied by the factorial of (n - 1).
-    // The function calls itself with a reduced input (n - 1), moving closer to the base case (n == 0).
-    return n * factorial(n - 1);
+
+    // Recursive case:
+    // Multiply current number with factorial of (number - 1)
+    return number * calculateFactorial(number - 1);
 }
 
 int main()
 {
-    int n;
-    cin >> n;
+    int inputNumber;
+    cin >> inputNumber;
 
-    // Calculate the factorial of the input number and print the result to the console
-    cout << factorial(n) << endl;
-
+    cout << calculateFactorial(inputNumber) << endl;
     return 0;
 }
