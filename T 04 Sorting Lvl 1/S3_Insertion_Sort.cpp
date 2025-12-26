@@ -2,16 +2,17 @@
 using namespace std;
 
 /*
-    Insertion Sort Algorithm
-    ------------------------
-    Insertion Sort works like sorting playing cards in hand.
+    Insertion Sort (Shift-based approach)
+    ------------------------------------
+    This version matches the VISUAL and TEXTBOOK explanation.
 
-    It takes one element at a time from the unsorted part
-    and inserts it into its correct position in the sorted part.
+    Idea:
+    - Pick one element as "key"
+    - Shift all larger elements one position to the right
+    - Insert the key in the created gap
 */
-void insertionSort(int numbers[], int totalElements)
+void insertionSortShift(int numbers[], int totalElements)
 {
-    // Start from the second element
     for (int currentIndex = 1; currentIndex < totalElements; currentIndex++)
     {
         int keyValue = numbers[currentIndex];
@@ -29,21 +30,58 @@ void insertionSort(int numbers[], int totalElements)
     }
 }
 
+/*
+    Insertion Sort (Swap-based approach)
+    -----------------------------------
+    This version repeatedly swaps adjacent elements
+    until the current element reaches its correct position.
+
+*/
+void insertionSortSwap(int numbers[], int totalElements)
+{
+    for (int currentIndex = 1; currentIndex < totalElements; currentIndex++)
+    {
+        int previousIndex = currentIndex;
+
+        // Swap backwards until element is placed correctly
+        while (previousIndex > 0 && numbers[previousIndex] < numbers[previousIndex - 1])
+        {
+            swap(numbers[previousIndex], numbers[previousIndex - 1]);
+            previousIndex--;
+        }
+    }
+}
+
+// Utility function to print array
+void printArray(int numbers[], int totalElements)
+{
+    for (int i = 0; i < totalElements; i++)
+        cout << numbers[i] << " ";
+    cout << endl;
+}
+
 int main()
 {
-    int numbers[] = {13, 46, 24, 52, 20, 9};
-    int totalElements = sizeof(numbers) / sizeof(numbers[0]); // FIXED
+    int originalArray[] = {13, 46, 24, 52, 20, 9};
+    int totalElements = sizeof(originalArray) / sizeof(originalArray[0]);
 
-    cout << "Before Sorting: ";
-    for (int i = 0; i < totalElements; i++)
-        cout << numbers[i] << " ";
+    // Create copies so both algorithms work on same data
+    int shiftArray[totalElements];
+    int swapArray[totalElements];
 
-    insertionSort(numbers, totalElements);
-    cout << endl;
+    copy(originalArray, originalArray + totalElements, shiftArray);
+    copy(originalArray, originalArray + totalElements, swapArray);
 
-    cout << "After Sorting: ";
-    for (int i = 0; i < totalElements; i++)
-        cout << numbers[i] << " ";
+    cout << "Original Array: ";
+    printArray(originalArray, totalElements);
+
+    insertionSortShift(shiftArray, totalElements);
+    cout << "After Shift-based Insertion Sort: ";
+    printArray(shiftArray, totalElements);
+
+    insertionSortSwap(swapArray, totalElements);
+    cout << "After Swap-based Insertion Sort: ";
+    printArray(swapArray, totalElements);
 
     return 0;
 }
