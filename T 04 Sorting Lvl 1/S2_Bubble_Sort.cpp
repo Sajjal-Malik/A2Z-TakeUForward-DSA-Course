@@ -13,17 +13,17 @@ using namespace std;
 void bubbleSort(int numbers[], int totalElements)
 {
     // Controls number of passes
-    for (int pass = totalElements - 1; pass > 0; pass--)
+    for (int passingIndex = totalElements - 1; passingIndex > 0; passingIndex--)
     {
         // Compare adjacent elements
-        for (int index = 0; index < pass; index++)
+        for (int checkIndex = 0; checkIndex < passingIndex; checkIndex++)
         {
-            if (numbers[index] > numbers[index + 1])
+            if (numbers[checkIndex] > numbers[checkIndex + 1])
             {
                 // Swap if elements are in wrong order
-                int temp = numbers[index];
-                numbers[index] = numbers[index + 1];
-                numbers[index + 1] = temp;
+                int temp = numbers[checkIndex];
+                numbers[checkIndex] = numbers[checkIndex + 1];
+                numbers[checkIndex + 1] = temp;
             }
         }
     }
