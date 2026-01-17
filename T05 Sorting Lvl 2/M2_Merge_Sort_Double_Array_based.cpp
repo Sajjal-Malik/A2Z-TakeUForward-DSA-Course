@@ -68,14 +68,14 @@ void mergeSubarrays(int array[], int startIndex, int middleIndex, int endIndex)
 */
 void mergeSortRecursive(int array[], int startIndex, int endIndex)
 {
-    if (startIndex < endIndex) // base case handled implicitly
-    {
-        int middleIndex = startIndex + (endIndex - startIndex) / 2;
+    if (startIndex >= endIndex)
+        return; // base case
 
-        mergeSortRecursive(array, startIndex, middleIndex);       // sort left half
-        mergeSortRecursive(array, middleIndex + 1, endIndex);     // sort right half
-        mergeSubarrays(array, startIndex, middleIndex, endIndex); // merge sorted halves
-    }
+    int middleIndex = startIndex + (endIndex - startIndex) / 2;
+
+    mergeSortRecursive(array, startIndex, middleIndex);       // sort left half
+    mergeSortRecursive(array, middleIndex + 1, endIndex);     // sort right half
+    mergeSubarrays(array, startIndex, middleIndex, endIndex); // merge sorted halves
 }
 
 // Prints the array elements
