@@ -1,42 +1,58 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Brute Force Approach
-void printAllDivisorsBruteForce(int n)
+/**
+ * Brute Force Approach
+ * Iterates linearly from 1 to targetNumber to find all factors.
+ * Time Complexity: O(n)
+ */
+void printAllDivisorsBruteForce(int targetNumber)
 {
-
-    for (int i = 1; i <= n; i++)
+    for (int currentStep = 1; currentStep <= targetNumber; currentStep++)
     {
-        if (n % i == 0)
-            cout << i << " ";
+        // A number is a divisor if the remainder is zero
+        if (targetNumber % currentStep == 0)
+            cout << currentStep << " ";
     }
 }
 
-// Optimal Approach using -> SQRT(n)
-void printAllDivisorsOptimal(int n)
+/**
+ * Optimal Approach
+ * Exploits the mathematical property that divisors exist in pairs around the square root.
+ * Time Complexity: O(sqrt(n) + d log d) where d is the number of divisors.
+ */
+void printAllDivisorsOptimal(int targetNumber)
 {
+    vector<int> divisorList;
+    int squareRootLimit = sqrt(targetNumber);
 
-    vector<int> v;
-    for (int i = 1; i <= sqrt(n); i++)
+    for (int candidate = 1; candidate <= squareRootLimit; candidate++)
     {
-        if (n % i == 0)
-            v.push_back(i);
-        if (n / i != i)
-            v.push_back(n / i);
+        if (targetNumber % candidate == 0)
+        {
+            divisorList.push_back(candidate);
+
+            if (targetNumber / candidate != candidate)
+                divisorList.push_back(targetNumber / candidate);
+        }
     }
-    sort(v.begin(), v.end());
-    for (auto it : v)
-        cout << it << " ";
+
+    // Sort list to ensure divisors are displayed in ascending order
+    sort(divisorList.begin(), divisorList.end());
+
+    for (auto divisor : divisorList)
+        cout << divisor << " ";
 }
 
 int main()
 {
-
-    int n;
+    int inputNumber;
     cout << "Enter a number: ";
-    cin >> n;
+    cin >> inputNumber;
 
-    printAllDivisorsBruteForce(n);
+    printAllDivisorsBruteForce(inputNumber);
+    cout << endl;
+    printAllDivisorsOptimal(inputNumber);
 
     return 0;
 }

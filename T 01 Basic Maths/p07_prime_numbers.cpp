@@ -1,35 +1,53 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Brute Force Approach
-void primeNumberBruteforce(int n)
+/**
+ * Brute Force Approach
+ * Checks primality by counting all divisors from 1 to n.
+ * Time Complexity: O(n)
+ */
+void primeNumberBruteforce(int inputNumber)
 {
-    int count = 0;
-    for (int i = 1; i <= n; i++)
+    int divisorCount = 0;
+    for (int candidate = 1; candidate <= inputNumber; candidate++)
     {
-        if (n % i == 0)
-            count++;
+        // If divisible, increment the divisor counter
+        if (inputNumber % candidate == 0)
+            divisorCount++;
     }
-    if (count == 2)
+
+    // A prime number has exactly two distinct divisors: 1 and itself
+    if (divisorCount == 2)
         cout << "Number is prime";
     else
         cout << "Number is not prime";
 }
 
-// Optimal Approach using -> SQRT(n)
-void primeNumberOptimal(int n)
+/**
+ * Optimal Approach
+ * Checks primality by counting divisors up to the square root of n.
+ * Time Complexity: O(sqrt(n))
+ */
+void primeNumberOptimal(int inputNumber)
 {
-    int count = 0;
-    for (int i = 1; i <= sqrt(n); i++)
+    int divisorCount = 0;
+    int rootLimit = sqrt(inputNumber);
+
+    for (int candidate = 1; candidate <= rootLimit; candidate++)
     {
-        if (n % i == 0)
+        if (inputNumber % candidate == 0)
         {
-            count++;
-            if (n / i != i)
-                count++;
+            // Count the found divisor
+            divisorCount++;
+
+            // Count the paired divisor if it is distinct (e.g., for 36, 6*6 only counts once)
+            if (inputNumber / candidate != candidate)
+                divisorCount++;
         }
     }
-    if (count == 2)
+
+    // Verification based on the total divisor count
+    if (divisorCount == 2)
         cout << "Number is prime";
     else
         cout << "Number is not prime";
@@ -37,12 +55,11 @@ void primeNumberOptimal(int n)
 
 int main()
 {
-
-    int n;
+    int userInput;
     cout << "Enter a number: ";
-    cin >> n;
+    cin >> userInput;
 
-    primeNumberBruteforce(n);
+    primeNumberBruteforce(userInput);
 
     return 0;
 }

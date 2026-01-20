@@ -1,42 +1,66 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void checkSumAndPalindrome(int n) {
-    if (n < 0) {
+/**
+ * Calculates the sum of digits and determines if the number is a palindrome.
+ * Uses the mathematical approach of reversing the integer.
+ */
+void checkSumAndPalindrome(int inputNumber)
+{
+    // Standardize input by handling negative values
+    if (inputNumber < 0)
+    {
         cout << "Note: Taking absolute value of input." << endl;
-        n = abs(n);  // for abs value
+        inputNumber = abs(inputNumber);
     }
 
-    int sum = 0;
-    int originalNumber = n;
-    int reverseNumber = 0;
+    int digitSum = 0;
+    int originalReference = inputNumber;
+    int reversedResult = 0;
+    int remainingDigits = inputNumber;
 
-    while (n > 0) {
-        int lastDigit = n % 10;
-        sum += lastDigit;
-        reverseNumber = (reverseNumber * 10) + lastDigit;
-        n /= 10;
+    while (remainingDigits > 0)
+    {
+        // Isolate the last digit
+        int currentDigit = remainingDigits % 10;
+
+        // Add digit to the total sum
+        digitSum += currentDigit;
+
+        // Build the reversed number by shifting positions
+        reversedResult = (reversedResult * 10) + currentDigit;
+
+        // Truncate the last digit
+        remainingDigits /= 10;
     }
 
-    cout << "Sum of digits: " << sum << endl;
+    cout << "Sum of digits: " << digitSum << endl;
 
-    if (originalNumber == reverseNumber) {
+    // Check if the original sequence matches the reversed sequence
+    if (originalReference == reversedResult)
+    {
         cout << "Is a Palindrome: Yes" << endl;
-    } else {
+    }
+    else
+    {
         cout << "Is a Palindrome: No" << endl;
     }
 }
 
-int main() {
-    int n;
+int main()
+{
+    int userInput;
     cout << "Enter an integer: ";
-    cin >> n;
+    cin >> userInput;
 
-    if (!cin) { // Handle invalid input (e.g., "abc")
+    // Validate that the input is a valid integer sequence
+    if (!cin)
+    {
         cout << "Invalid input. Please enter an integer." << endl;
         return 1;
     }
 
-    checkSumAndPalindrome(n);
+    checkSumAndPalindrome(userInput);
+
     return 0;
 }

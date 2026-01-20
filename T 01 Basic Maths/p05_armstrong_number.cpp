@@ -1,31 +1,45 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-void armstrongNumber(int n) {
+/**
+ * Checks if a number is an Armstrong number.
+ * Definition: A 3-digit number where the sum of the cubes of its digits equals the number itself.
+ */
+void checkArmstrongNumber(int inputNumber)
+{
+    int remainingDigits = inputNumber;
+    int sumOfCubes = 0;
 
-    int number = n;
-    int sum = 0;
-    while(n > 0) {
-        int lastDigit = n % 10;
-        n /= 10;
-        sum = sum + (lastDigit * lastDigit * lastDigit);
+    while (remainingDigits > 0)
+    {
+        // Isolate the rightmost digit
+        int currentDigit = remainingDigits % 10;
+
+        // Accumulate the cube of the current digit
+        sumOfCubes += (currentDigit * currentDigit * currentDigit);
+
+        // Remove the rightmost digit to process the next one
+        remainingDigits /= 10;
     }
 
-    if(sum == number)
+    // Determine if the calculated sum matches the original input
+    if (sumOfCubes == inputNumber)
+    {
         cout << "It is an Armstrong number" << endl;
+    }
     else
+    {
         cout << "It is not an Armstrong number" << endl;
-
+    }
 }
 
-int main(){
-
-    int n;
+int main()
+{
+    int targetNumber;
     cout << "Enter a number: ";
-    cin >> n;
+    cin >> targetNumber;
 
-    armstrongNumber(n);
-    
+    checkArmstrongNumber(targetNumber);
 
     return 0;
 }
