@@ -3,9 +3,10 @@ using namespace std;
 
 void checkPallindromeNumber(int n)
 {
-
     int reverseNumber = 0;
-    int originalNumber = n;
+    int originalNumber = n; // Preserve the original number for final comparison
+
+    // Logic to reverse the number
     while (n > 0)
     {
         int lastDigit = n % 10;
@@ -13,6 +14,7 @@ void checkPallindromeNumber(int n)
         reverseNumber = (reverseNumber * 10) + lastDigit;
     }
 
+    // A number is a palindrome if it is equal to its reverse
     if (reverseNumber == originalNumber)
         cout << "It is a Pallindrome number" << endl;
     else
@@ -21,7 +23,6 @@ void checkPallindromeNumber(int n)
 
 int main()
 {
-
     int n;
     cout << "Enter a number: ";
     cin >> n;
