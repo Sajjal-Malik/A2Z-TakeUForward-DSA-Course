@@ -5,7 +5,7 @@ using namespace std;
     Parameterized Recursion
     The sum is passed and updated as a parameter
 */
-int sumParameterized(int current, int accumulatedSum)
+int sumOfNParameterizedWay(int current, int accumulatedSum)
 {
     // Base case
     if (current < 1)
@@ -14,21 +14,21 @@ int sumParameterized(int current, int accumulatedSum)
     }
 
     // Recursive call with updated sum
-    return sumParameterized(current - 1, accumulatedSum + current);
+    return sumOfNParameterizedWay(current - 1, accumulatedSum + current);
 }
 
 /*
     Functional Recursion
     The sum is calculated while returning from recursion
 */
-int sumFunctional(int n)
+int sumOfNFunctionalWay(int n)
 {
     // Base case
     if (n <= 0)
         return 0;
 
     // Recursive formula
-    return n + sumFunctional(n - 1);
+    return n + sumOfNFunctionalWay(n - 1);
 }
 
 int main()
@@ -36,8 +36,8 @@ int main()
     int n;
     cin >> n;
 
-    cout << sumParameterized(n, 0) << endl;
-    cout << sumFunctional(n) << endl;
+    cout << sumOfNParameterizedWay(n, 0) << endl;
+    cout << sumOfNFunctionalWay(n) << endl;
 
     return 0;
 }

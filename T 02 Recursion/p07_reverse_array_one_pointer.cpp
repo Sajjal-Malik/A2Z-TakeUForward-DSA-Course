@@ -2,10 +2,29 @@
 using namespace std;
 
 /*
-    Function: reverseArrayRecursive
+    Function: reverseArrayTwoPointer
     Purpose : Reverses an array in-place using recursion
 */
-void reverseArrayRecursive(int leftIndex, int arr[], int size)
+void reverseArrayTwoPointer(int arr[], int left, int right)
+{
+    // Base case
+    if (left > right)
+        return;
+
+    // Simple swapping logic
+    int temp = arr[left];
+    arr[left] = arr[right];
+    arr[right] = temp;
+
+    // Recursive steps
+    reverseArrayTwoPointer(arr, left + 1, right - 1);
+}
+
+/*
+    Function: reverseArraySinglePointerOptimal
+    Purpose : Reverses an array in-place using recursion
+*/
+void reverseArraySinglePointerOptimal(int leftIndex, int arr[], int size)
 {
     // Base case: stop when middle is reached
     if (leftIndex >= size / 2)
@@ -15,7 +34,7 @@ void reverseArrayRecursive(int leftIndex, int arr[], int size)
     swap(arr[leftIndex], arr[size - leftIndex - 1]);
 
     // Recursive call moving inward
-    reverseArrayRecursive(leftIndex + 1, arr, size);
+    reverseArraySinglePointerOptimal(leftIndex + 1, arr, size);
 }
 
 int main()
@@ -27,7 +46,7 @@ int main()
         cout << arr[i] << " ";
     cout << endl;
 
-    reverseArrayRecursive(0, arr, size);
+    reverseArraySinglePointerOptimal(0, arr, size);
 
     for (int i = 0; i < size; i++)
         cout << arr[i] << " ";

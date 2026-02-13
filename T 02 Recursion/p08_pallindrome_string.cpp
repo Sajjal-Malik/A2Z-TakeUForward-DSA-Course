@@ -1,11 +1,25 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+bool isPalindromeTwoPointer(string &s, int left, int right)
+{
+    // Base Case: If pointers cross or meet, it's a palindrome
+    if (left >= right)
+        return true;
+
+    // Check if ends match
+    if (s[left] != s[right])
+        return false;
+
+    // Recurse for the inner substring
+    return isPalindromeTwoPointer(s, left + 1, right - 1);
+}
+
 /*
     Function: isPalindrome
     Purpose : Checks whether a string is a palindrome using recursion
 */
-bool isPalindrome(int leftIndex, string &text, int length)
+bool isPalindromeSinglePointer(int leftIndex, string &text, int length)
 {
     // Base case:
     // When left index reaches or crosses the middle
@@ -21,7 +35,7 @@ bool isPalindrome(int leftIndex, string &text, int length)
     }
 
     // Recursive call moving inward
-    return isPalindrome(leftIndex + 1, text, length);
+    return isPalindromeSinglePointer(leftIndex + 1, text, length);
 }
 
 int main()
@@ -29,7 +43,16 @@ int main()
     string word = "madam";
     int length = word.size();
 
-    if (isPalindrome(0, word, length))
+    if (isPalindromeTwoPointer(word, 0, length))
+    {
+        cout << "This string is a Palindrome" << endl;
+    }
+    else
+    {
+        cout << "This string is NOT a Palindrome" << endl;
+    }
+
+    if (isPalindromeSinglePointer(0, word, length - 1))
     {
         cout << "This string is a Palindrome" << endl;
     }

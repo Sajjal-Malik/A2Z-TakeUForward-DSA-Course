@@ -4,7 +4,7 @@ using namespace std;
 /*
     Function: fibonacci
     Purpose : Returns the nth Fibonacci number using recursion
-    Sequence: 0, 1, 1, 2, 3, 5, ...
+    Sequence: 0, 1, 1, 2, 3, 5, 8, 13, so on...
 */
 int fibonacci(int index)
 {
@@ -16,11 +16,11 @@ int fibonacci(int index)
     }
 
     // Recursive calls:
-    int previousValue = fibonacci(index - 1);
-    int secondPreviousValue = fibonacci(index - 2);
+    int lastValue = fibonacci(index - 1);
+    int secondLastValue = fibonacci(index - 2);
 
     // Sum of two previous Fibonacci numbers
-    return previousValue + secondPreviousValue;
+    return lastValue + secondLastValue;
 }
 
 int main()
